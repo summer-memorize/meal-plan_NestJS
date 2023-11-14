@@ -1,14 +1,24 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Query,
+  UseFilters,
+  UseInterceptors,
+} from '@nestjs/common';
 import { MealPlanService } from './meal-plan.service';
+import { HttpExceptionFilter } from 'src/common/exceptions/http-exception.filter';
+import { SuccessInterceptor } from 'src/common/interceptors/success.interceptor';
 
-@Controller('meal-plan')
+@Controller('mealplans')
+@UseInterceptors(SuccessInterceptor)
+@UseFilters(HttpExceptionFilter)
 export class MealPlanController {
   constructor(private readonly mealPlanService: MealPlanService) {}
 
   @Get()
-  getMealPlans(@Query() query): string {
+  getMealPlans(@Query() query) {
     console.log('query:  ', query);
-    return 'This action returns all meal plans';
+    return { result: 'hi' };
     // return this.mealPlanService.getMealPlans(query);
   }
 }
