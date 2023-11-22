@@ -1,6 +1,10 @@
 import {
+  Body,
   Controller,
   Get,
+  Post,
+  Put,
+  Delete,
   Query,
   UseFilters,
   UseInterceptors,
@@ -18,7 +22,28 @@ export class MealPlanController {
   @Get()
   getMealPlans(@Query() query) {
     console.log('query:  ', query);
-    return { result: 'hi' };
+    return { result: 'ok' };
     // return this.mealPlanService.getMealPlans(query);
+  }
+
+  @Post()
+  createMealPlan(@Body() body) {
+    console.log('body:  ', body);
+    return { result: 'ok' };
+    // return this.mealPlanService.createMealPlan(body);
+  }
+
+  @Put()
+  updateMealPlan(@Body() body) {
+    console.log('body:  ', body);
+    return { result: 'ok' };
+    // return this.mealPlanService.updateMealPlan(body);
+  }
+
+  @Delete()
+  deleteMealPlan(@Query() query) {
+    console.log('query:  ', query);
+    return { result: 'ok' };
+    // return this.mealPlanService.deleteMealPlan(query);
   }
 }
