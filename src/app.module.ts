@@ -19,7 +19,9 @@ import mongoose from 'mongoose';
   providers: [AppService],
 })
 export class AppModule implements NestModule {
+  private readonly isDev: boolean = process.env.NODE_ENV === 'dev';
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(LoggerMiddleware).forRoutes('*');
+    mongoose.set('debug', this.isDev);
   }
 }
